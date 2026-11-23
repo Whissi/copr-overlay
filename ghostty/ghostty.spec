@@ -17,7 +17,7 @@ Source1:        https://release.files.ghostty.org/%{version}/ghostty-%{version}.
 Source3:        https://github.com/simdutf/simdutf/releases/download/v%{simdutf_version}/simdutf.cpp#/simdutf-%{simdutf_version}.cpp
 Source4:        https://github.com/simdutf/simdutf/releases/download/v%{simdutf_version}/simdutf.h#/simdutf-%{simdutf_version}.h
 Source5:        https://raw.githubusercontent.com/simdutf/simdutf/v%{simdutf_version}/LICENSE-MIT#/simdutf-%{simdutf_version}-MIT-LICENSE
-Source6:        https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt#/GPL-2.0-or-later.txt
+Source6:        GPL-2.0-or-later.txt
 Source7:        collect-licenses.py
 Source8:        sources.sha256
 
@@ -306,6 +306,7 @@ TERMINFO=%{buildroot}%{_datadir}/terminfo infocmp -x xterm-ghostty >/dev/null
 %changelog
 * Mon Nov 23 2026 Thomas Deutschmann <whissi@whissi.de> - 1.4.0-5.whissi
 - Rebuild from Git-managed packaging sources
+- Include the GPL license text in packaging sources to avoid download rate limits
 
 * Sun Nov 22 2026 Thomas Deutschmann <whissi@whissi.de> - 1.4.0-4.whissi
 - Own integration and icon directories and require the Vim directory layout
