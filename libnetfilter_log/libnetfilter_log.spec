@@ -1,6 +1,6 @@
 Name:           libnetfilter_log
 Version:        1.0.2
-Release:        2%{?dist}.whissi
+Release:        3%{?dist}.whissi
 Summary:        Netfilter logging userspace library
 License:        GPL-2.0-only
 URL:            https://www.netfilter.org/projects/libnetfilter_log/
@@ -51,6 +51,9 @@ find %{buildroot} -name '*.la' -delete
 %{_libdir}/pkgconfig/libnetfilter_log*.pc
 
 %changelog
+* Mon Nov 23 2026 Thomas Deutschmann <whissi@whissi.de> - 1.0.2-3.whissi
+- Rebuild from Git-managed packaging sources
+
 * Mon Nov 16 2026 Thomas Deutschmann <whissi@whissi.de> - 1.0.2-1
 - Update Fedora's packaging to 1.0.2 for ulogd's NFLOG input
 - Preserve the libipulog compatibility library and kernel UAPI headers
