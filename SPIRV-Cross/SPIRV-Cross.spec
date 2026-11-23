@@ -9,7 +9,7 @@ awkward IR/assembly-like code.}
 
 Name:           SPIRV-Cross
 Version:        1.4.363.0
-Release:        1%{?dist}.whissi
+Release:        2%{?dist}.whissi
 Summary:        A tool designed for parsing and converting SPIR-V to other shader languages
 
 # Checking with `rg SPDX`,
@@ -105,6 +105,9 @@ rm -r %{buildroot}/%{_datadir}/spirv_cross_{c,core,cpp,glsl,hlsl,msl,reflect,uti
 %{_libdir}/libspirv-cross-c-shared.so.0{,.*}
 
 %changelog
+* Mon Nov 23 2026 Thomas Deutschmann <whissi@whissi.de> - 1.4.363.0-2.whissi
+- Rebuild from Git-managed packaging sources
+
 * Mon Nov 16 2026 Thomas Deutschmann <whissi@whissi.de> - 1.4.363.0-1.whissi
 - Update to Vulkan SDK 1.4.363.0
 - Enable native C API regression tests using Fedora shader tools
