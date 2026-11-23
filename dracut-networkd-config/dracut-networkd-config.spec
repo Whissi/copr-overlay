@@ -1,6 +1,6 @@
 Name:           dracut-networkd-config
 Version:        1.0.0
-Release:        1%{?dist}.whissi
+Release:        2%{?dist}.whissi
 Summary:        Select systemd-networkd configuration files for the initramfs
 
 License:        GPL-3.0-or-later
@@ -48,6 +48,9 @@ bash test/check.sh
 %{_prefix}/lib/dracut/modules.d/99networkd-config/
 
 %changelog
+* Mon Nov 23 2026 Thomas Deutschmann <whissi@whissi.de> - 1.0.0-2.whissi
+- Rebuild from Git-managed packaging source
+
 * Sun Nov 22 2026 Thomas Deutschmann <whissi@whissi.de> - 1.0.0-1.whissi
 - Package the upstream 1.0.0 GitHub release
 - Install the complete module directory and run the upstream local checks
