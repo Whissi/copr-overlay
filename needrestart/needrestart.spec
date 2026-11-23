@@ -1,6 +1,6 @@
 Name:           needrestart
 Version:        3.11.1
-Release:        1%{?dist}.whissi
+Release:        2%{?dist}.whissi
 Summary:        Restart daemons after library updates
 
 License:        GPL-2.0-or-later
@@ -130,6 +130,9 @@ perl needrestart --help > /dev/null
 
 
 %changelog
+* Mon Nov 23 2026 Thomas Deutschmann <whissi@whissi.de> - 3.11.1-2.whissi
+- Rebuild from Git-managed packaging sources
+
 * Wed Nov 18 2026 Thomas Deutschmann <whissi@whissi.de> - 3.11.1-1.whissi
 - Update to 3.11.1 with upstream fixes for CVE-2026-124757
 
