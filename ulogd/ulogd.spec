@@ -1,6 +1,6 @@
 Name:           ulogd
 Version:        2.0.9
-Release:        2%{?dist}.whissi
+Release:        3%{?dist}.whissi
 Summary:        Userspace logging daemon for Netfilter
 License:        GPL-2.0-only AND GPL-2.0-or-later
 URL:            https://www.netfilter.org/projects/ulogd/
@@ -131,6 +131,9 @@ done
 %{_libdir}/ulogd/ulogd_output_PGSQL.so
 
 %changelog
+* Mon Nov 23 2026 Thomas Deutschmann <whissi@whissi.de> - 2.0.9-3.whissi
+- Rebuild from Git-managed packaging sources
+
 * Mon Nov 16 2026 Thomas Deutschmann <whissi@whissi.de> - 2.0.9-1
 - Package ulogd with a systemd service and NFLOG text output
 - Split SQLite, MySQL/MariaDB and PostgreSQL outputs into optional subpackages
