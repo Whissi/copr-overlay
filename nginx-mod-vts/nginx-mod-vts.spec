@@ -3,7 +3,7 @@
 
 Name:           nginx-mod-vts
 Version:        0.2.7
-Release:        4%{?dist}.whissi
+Release:        5%{?dist}.whissi
 Summary:        Nginx virtual host traffic status module
 
 License:        BSD-2-Clause
@@ -51,6 +51,9 @@ NGINX_VTS_MODULE="$PWD/%{_vpath_builddir}/ngx_http_vhost_traffic_status_module.s
 
 
 %changelog
+* Mon Nov 23 2026 Thomas Deutschmann <whissi@whissi.de> - 0.2.7-5.whissi
+- Rebuild from Git-managed packaging sources
+
 * Wed Nov 18 2026 Thomas Deutschmann <whissi@whissi.de> - 0.2.7-4.whissi
 - Rebuild against nginx 1.30.7 for Whissi Overlay
 - Verify module loading, HTTP serving and VTS JSON request counters
