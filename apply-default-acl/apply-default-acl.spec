@@ -1,6 +1,6 @@
 Name:           apply-default-acl
 Version:        0.4.4
-Release:        3%{?dist}.whissi
+Release:        4%{?dist}.whissi
 Summary:        Utility to apply default POSIX ACLs to files and directories
 
 License:        AGPL-3.0-only
@@ -56,6 +56,9 @@ find %{buildroot} -name '*.la' -delete
 
 
 %changelog
+* Mon Nov 23 2026 Thomas Deutschmann <whissi@whissi.de> - 0.4.4-4.whissi
+- Rebuild from Git-managed packaging source
+
 * Mon Nov 16 2026 Thomas Deutschmann <whissi@whissi.de> - 0.4.4-2
 - Prepare for Whissi Overlay: use SPDX license and split development files
 - Disable static libraries and remove libtool archives
