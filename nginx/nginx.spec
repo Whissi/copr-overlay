@@ -63,7 +63,7 @@
 Name:              nginx
 Epoch:             2
 Version:           1.30.7
-Release:           2%{?dist}.whissi
+Release:           3%{?dist}.whissi
 
 Summary:           A high performance web server and reverse proxy server
 License:           BSD-2-Clause
@@ -636,6 +636,9 @@ fi
 
 
 %changelog
+* Mon Nov 23 2026 Thomas Deutschmann <whissi@whissi.de> - 2:1.30.7-3.whissi
+- Rebuild from Git-managed packaging sources
+
 * Sun Nov 22 2026 Thomas Deutschmann <whissi@whissi.de> - 2:1.30.7-2.whissi
 - Handle a missing transaction trigger argument during rpm-ostree deployment preparation
 
