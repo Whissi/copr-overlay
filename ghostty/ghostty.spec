@@ -6,7 +6,7 @@
 
 Name:           ghostty
 Version:        1.4.0
-Release:        4%{?dist}.whissi
+Release:        5%{?dist}.whissi
 Summary:        Fast, feature-rich terminal emulator
 License:        MIT AND Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later AND GPL-3.0-or-later AND LGPL-2.1-only AND MPL-2.0 AND OFL-1.1 AND Unicode-3.0 AND (WTFPL OR CC0-1.0)
 URL:            https://ghostty.org
@@ -304,6 +304,9 @@ TERMINFO=%{buildroot}%{_datadir}/terminfo infocmp -x xterm-ghostty >/dev/null
 %doc %{_docdir}/%{name}-terminfo/
 
 %changelog
+* Mon Nov 23 2026 Thomas Deutschmann <whissi@whissi.de> - 1.4.0-5.whissi
+- Rebuild from Git-managed packaging sources
+
 * Sun Nov 22 2026 Thomas Deutschmann <whissi@whissi.de> - 1.4.0-4.whissi
 - Own integration and icon directories and require the Vim directory layout
 - Require the directory owners for D-Bus activation and standalone terminfo
