@@ -74,7 +74,7 @@
 
 Name:           zig
 Version:        0.17.1
-Release:        2%{?dist}.whissi
+Release:        3%{?dist}.whissi
 Summary:        Programming language for maintaining robust, optimal, and reusable software
 
 # The minisign file references a specific archive name so we store for ease of use
@@ -288,6 +288,9 @@ install -D -pv -m 0644 %{SOURCE2} %{buildroot}%{_rpmmacrodir}/macros.%{name}
 %endif
 
 %changelog
+* Mon Nov 23 2026 Thomas Deutschmann <whissi@whissi.de> - 0.17.1-3.whissi
+- Rebuild from Git-managed packaging sources
+
 * Sun Nov 22 2026 Thomas Deutschmann <whissi@whissi.de> - 0.17.1-2.whissi
 - Include the project license in independently installable library and RPM macro packages
 
