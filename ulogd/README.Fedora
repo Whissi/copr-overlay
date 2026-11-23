@@ -1,0 +1,46 @@
+ulogd on Fedora
+===============
+
+The default /etc/ulogd.conf listens on NFLOG group 1 and writes text records
+to /var/log/ulogd/ulogd.log. Daemon diagnostics go to the systemd journal.
+Enable and start the service with: systemctl enable --now ulogd.service
+Restart the service after configuration changes. SIGHUP only reopens log files.
+The package does not create firewall rules or configure event sources.
+
+The upstream example configuration is installed as
+/usr/share/doc/ulogd/ulogd.conf. Copy the relevant plugin, stack and section
+settings into /etc/ulogd.conf; the active default uses an explicit plugin list.
+NFLOG, NFCT and UNIXSOCK inputs are built. NFACCT, DBI, PCAP and JSON are not.
+
+Database outputs
+----------------
+
+Optional packages: ulogd-sqlite, ulogd-mysql and ulogd-pgsql.
+Installing one adds the plugin and schema examples, but does not create a
+database, install a database server, or change the active configuration.
+Keep /etc/ulogd.conf readable only by root if it contains database credentials.
+
+For SQLite, create a database using the sqlite3 command (from Fedora's sqlite
+package) and /usr/share/doc/ulogd-sqlite/sqlite-packets.sql. For example:
+
+  sqlite3 /var/log/ulogd/packets.sqlite3 < /usr/share/doc/ulogd-sqlite/sqlite-packets.sql
+  chmod 0640 /var/log/ulogd/packets.sqlite3
+
+Add the SQLITE3 plugin to [global] (use /usr/lib64 on x86_64):
+
+  plugin="/usr/lib64/ulogd/ulogd_output_SQLITE3.so"
+  stack=log1:NFLOG,base1:BASE,ifi1:IFINDEX,ip2str1:IP2STR,sqlite1:SQLITE3
+
+and add this section:
+
+  [sqlite1]
+  db="/var/log/ulogd/packets.sqlite3"
+  table="ulog_pkt"
+
+Keep the default text stack if both outputs are wanted. The SQLite database is
+not rotated by logrotate; plan retention separately.
+
+The MySQL/MariaDB and PostgreSQL packages include upstream schema examples in
+their respective /usr/share/doc/ulogd-* directories. Review them before use:
+they contain DROP statements and are intended for a dedicated database.
+The PostgreSQL examples omit the obsolete OIDS table option.

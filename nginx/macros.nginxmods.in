@@ -1,0 +1,19 @@
+%_nginx_abiversion @@NGINX_ABIVERSION@@
+%_nginx_srcdir @@NGINX_SRCDIR@@
+%_nginx_buildsrcdir nginx-src
+%_nginx_modsrcdir ..
+%_nginx_modbuilddir ../%{_vpath_builddir}
+%nginx_moddir @@NGINX_MODDIR@@
+%nginx_modconfdir @@NGINX_MODCONFDIR@@
+
+%nginx_modrequires Requires: nginx(abi) = %{_nginx_abiversion}
+
+%nginx_modconfigure(:-:) \\\
+  %undefine _strict_symbol_defs_build \
+  cp -a "%{_nginx_srcdir}" "%{_nginx_buildsrcdir}" \
+  cd "%{_nginx_buildsrcdir}" \
+  ./configure --with-compat --with-cc-opt="%{optflags}" --with-ld-opt="$RPM_LD_FLAGS" \\\
+              --add-dynamic-module=$(realpath %{_nginx_modsrcdir}) --builddir=$(realpath %{_nginx_modbuilddir}) %{**} \
+  cd -
+
+%nginx_modbuild %{__make} -C "%{_nginx_buildsrcdir}" %{_make_output_sync} %{?_smp_mflags} %{_make_verbose} modules

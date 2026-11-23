@@ -1,0 +1,184 @@
+--- a/doc/pgsql-ulogd2.sql
++++ b/doc/pgsql-ulogd2.sql
+@@ -11,7 +11,7 @@
+ DROP TABLE IF EXISTS _format;
+ CREATE TABLE _format (
+   version integer
+-) WITH (OIDS=FALSE);
++);
+ 
+ INSERT INTO _format (version) VALUES (6);
+ 
+@@ -23,7 +23,7 @@
+   ext_name varchar(64) NOT NULL,
+   table_name varchar(64) NOT NULL,
+   join_name varchar(64) NOT NULL
+-) WITH (OIDS=FALSE);
++);
+ 
+ DROP TABLE IF EXISTS mac CASCADE;
+ DROP TABLE IF EXISTS hwhdr CASCADE;
+@@ -69,7 +69,7 @@
+   label smallint default NULL,
+   mac_id bigint default NULL,
+   timestamp timestamp NOT NULL default now()
+-) WITH (OIDS=FALSE);
++);
+ 
+ CREATE INDEX ulog2_oob_family ON ulog2(oob_family);
+ CREATE INDEX ulog2_ip_saddr ON ulog2(ip_saddr_str);
+@@ -83,7 +83,7 @@
+   mac_saddr macaddr NOT NULL,
+   mac_daddr macaddr default NULL,
+   mac_protocol integer default NULL
+-) WITH (OIDS=FALSE);
++);
+ 
+ CREATE INDEX mac_saddr ON mac(mac_saddr);
+ CREATE INDEX mac_daddr ON mac(mac_daddr);
+@@ -93,7 +93,7 @@
+   _hw_id bigint PRIMARY KEY UNIQUE NOT NULL,
+   raw_type integer default NULL,
+   raw_header varchar(256) default NULL
+-) WITH (OIDS=FALSE);
++);
+ 
+ CREATE INDEX raw_type ON hwhdr(raw_type);
+ CREATE INDEX raw_header ON hwhdr(raw_header);
+@@ -112,7 +112,7 @@
+   tcp_rst boolean default NULL,
+   tcp_syn boolean default NULL,
+   tcp_fin boolean default NULL
+-) WITH (OIDS=FALSE);
++);
+ 
+ CREATE INDEX tcp_sport ON tcp(tcp_sport);
+ CREATE INDEX tcp_dport ON tcp(tcp_dport);
+@@ -122,7 +122,7 @@
+   udp_sport integer default NULL,
+   udp_dport integer default NULL,
+   udp_len smallint default NULL
+-) WITH (OIDS=FALSE);
++);
+ 
+ CREATE INDEX udp_sport ON udp(udp_sport);
+ CREATE INDEX udp_dport ON udp(udp_dport);
+@@ -132,7 +132,7 @@
+   sctp_sport integer default NULL,
+   sctp_dport integer default NULL,
+   sctp_csum smallint default NULL
+-) WITH (OIDS=FALSE);
++);
+ 
+ CREATE INDEX sctp_sport ON sctp(sctp_sport);
+ CREATE INDEX sctp_dport ON sctp(sctp_dport);
+@@ -145,7 +145,7 @@
+   icmp_echoseq integer default NULL,
+   icmp_gateway integer default NULL,
+   icmp_fragmtu smallint  default NULL
+-) WITH (OIDS=FALSE);
++);
+ 
+ CREATE TABLE icmpv6 (
+   _icmpv6_id bigint PRIMARY KEY UNIQUE NOT NULL,
+@@ -154,7 +154,7 @@
+   icmpv6_echoid integer default NULL,
+   icmpv6_echoseq integer default NULL,
+   icmpv6_csum integer default NULL
+-) WITH (OIDS=FALSE);
++);
+ 
+ CREATE TABLE nfacct (
+   sum_name varchar(128),
+@@ -162,7 +162,7 @@
+   sum_bytes integer default 0,
+   oob_time_sec integer default NULL,
+   oob_time_usec integer default NULL
+-) WITH (OIDS=FALSE);
++);
+ 
+ CREATE UNIQUE INDEX unique_acct ON nfacct(sum_name, oob_time_sec, oob_time_usec);
+ 
+@@ -288,7 +288,7 @@
+   flow_end_sec bigint default 0,
+   flow_end_usec bigint default 0,
+   ct_event smallint default 0
+-) WITH (OIDS=FALSE);
++);
+ 
+ CREATE INDEX ulog2_ct_oob_family ON ulog2_ct(oob_family);
+ CREATE INDEX ulog2_ct_orig_ip_saddr ON ulog2_ct(orig_ip_saddr_str);
+@@ -310,7 +310,7 @@
+   _proto_id serial PRIMARY KEY UNIQUE NOT NULL,
+   proto_name varchar(16) default NULL,
+   proto_desc varchar(255) default NULL
+-) WITH (OIDS=FALSE);
++);
+ 
+ -- see files /etc/protocols
+ -- or /usr/share/nmap/nmap-protocols
+@@ -338,7 +338,7 @@
+   user_id integer default NULL,
+   client_os varchar(100) default NULL,
+   client_app varchar(256) default NULL
+-) WITH (OIDS=FALSE);
++);
+ 
+ CREATE INDEX nufw_user_id ON nufw(user_id);
+ 
+--- a/doc/pgsql-ulogd2-flat.sql
++++ b/doc/pgsql-ulogd2-flat.sql
+@@ -7,7 +7,7 @@
+ DROP TABLE IF EXISTS _format;
+ CREATE TABLE _format (
+   version integer
+-) WITH (OIDS=FALSE);
++);
+ 
+ INSERT INTO _format (version) VALUES (1);
+ 
+@@ -19,7 +19,7 @@
+   ext_name varchar(64) NOT NULL,
+   table_name varchar(64) NOT NULL,
+   join_name varchar(64) NOT NULL
+-) WITH (OIDS=FALSE);
++);
+ 
+ DROP TABLE IF EXISTS nufw CASCADE;
+ DROP TABLE IF EXISTS ulog2_ct CASCADE;
+@@ -90,7 +90,7 @@
+   icmpv6_echoid integer default NULL,
+   icmpv6_echoseq integer default NULL,
+   icmpv6_csum integer default NULL
+-) WITH (OIDS=FALSE);
++);
+ 
+ CREATE INDEX ulog2_oob_family ON ulog2(oob_family);
+ CREATE INDEX ulog2_ip_saddr ON ulog2(ip_saddr_str);
+@@ -226,7 +226,7 @@
+   flow_end_sec bigint default 0,
+   flow_end_usec bigint default 0,
+   ct_event smallint default 0
+-) WITH (OIDS=FALSE);
++);
+ 
+ CREATE INDEX ulog2_ct_oob_family ON ulog2_ct(oob_family);
+ CREATE INDEX ulog2_ct_orig_ip_saddr ON ulog2_ct(orig_ip_saddr_str);
+@@ -249,7 +249,7 @@
+   _proto_id serial PRIMARY KEY UNIQUE NOT NULL,
+   proto_name varchar(16) default NULL,
+   proto_desc varchar(255) default NULL
+-) WITH (OIDS=FALSE);
++);
+ 
+ -- see files /etc/protocols
+ -- or /usr/share/nmap/nmap-protocols
+@@ -277,7 +277,7 @@
+   user_id integer default NULL,
+   client_os varchar(100) default NULL,
+   client_app varchar(256) default NULL
+-) WITH (OIDS=FALSE);
++);
+ 
+ CREATE INDEX nufw_user_id ON nufw(user_id);
+ 

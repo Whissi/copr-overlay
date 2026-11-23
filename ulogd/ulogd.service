@@ -1,0 +1,19 @@
+[Unit]
+Description=Netfilter userspace logging daemon
+Documentation=man:ulogd(8)
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=@SBINDIR@/ulogd -c /etc/ulogd.conf
+Restart=on-failure
+RestartSec=5s
+LogsDirectory=ulogd
+LogsDirectoryMode=0750
+UMask=0027
+NoNewPrivileges=yes
+ProtectHome=yes
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target

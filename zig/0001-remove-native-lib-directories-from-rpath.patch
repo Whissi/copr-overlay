@@ -1,0 +1,23 @@
+Subject: Remove native library directories from RPATH
+
+Based on Fedora's patch by Jan200101 <sentrycraft123@gmail.com>.
+Refreshed for Zig 0.17.1; preserve Fedora's native library RPATH policy.
+
+--- a/src/main.zig
++++ b/src/main.zig
+@@ -4242,6 +4242,15 @@
+                 appendLibDirOrWarnAllowMissing(io, &create_module.lib_directories, path);
+             }
+ 
++            for (paths.lib_dirs.items) |native_lib_dir| {
++                for (0.., create_module.rpath_list.items) |i, rpath_dir| {
++                    if (std.mem.eql(u8, native_lib_dir, rpath_dir)) {
++                        _ = create_module.rpath_list.orderedRemove(i);
++                        break;
++                    }
++                }
++            }
++
+             try create_module.framework_directories.ensureUnusedCapacity(arena, paths.framework_dirs.items.len);
+             for (paths.framework_dirs.items) |path| {
+                 appendLibDirOrWarnAllowMissing(io, &create_module.framework_directories, path);

@@ -1,0 +1,62 @@
+--- a/include/libnetfilter_log/libnetfilter_log.h
++++ b/include/libnetfilter_log/libnetfilter_log.h
+@@ -12,7 +12,7 @@
+ #include <stdint.h>
+ #include <sys/types.h>
+ #include <linux/netlink.h>
+-#include <libnetfilter_log/linux_nfnetlink_log.h>
++#include <linux/netfilter/nfnetlink_log.h>
+ 
+ #ifdef __cplusplus
+ extern "C" {
+--- a/src/libnetfilter_log.c
++++ b/src/libnetfilter_log.c
+@@ -28,7 +28,7 @@
+ #include <sys/socket.h>
+ #include "internal.h"
+ 
+-#include <libnetfilter_log/linux_nfnetlink_log.h>
++#include <linux/netfilter/nfnetlink_log.h>
+ 
+ #include <libnfnetlink/libnfnetlink.h>
+ #include <libnetfilter_log/libnetfilter_log.h>
+--- a/utils/nf-log.c
++++ b/utils/nf-log.c
+@@ -3,7 +3,7 @@
+ #include <stdlib.h>
+ #include <arpa/inet.h>
+ 
+-#include <libnetfilter_log/linux_nfnetlink_log.h>
++#include <linux/netfilter/nfnetlink_log.h>
+ 
+ #include <libmnl/libmnl.h>
+ #include <libnetfilter_log/libnetfilter_log.h>
+--- a/include/libnetfilter_log/Makefile.am
++++ b/include/libnetfilter_log/Makefile.am
+@@ -1,5 +1,5 @@
+ 
+-pkginclude_HEADERS = libnetfilter_log.h linux_nfnetlink_log.h
++pkginclude_HEADERS = libnetfilter_log.h
+ 
+ if BUILD_IPULOG
+ pkginclude_HEADERS += libipulog.h
+--- a/include/libnetfilter_log/Makefile.in
++++ b/include/libnetfilter_log/Makefile.in
+@@ -121,7 +121,7 @@
+     n|no|NO) false;; \
+     *) (install-info --version) >/dev/null 2>&1;; \
+   esac
+-am__pkginclude_HEADERS_DIST = libnetfilter_log.h linux_nfnetlink_log.h \
++am__pkginclude_HEADERS_DIST = libnetfilter_log.h \
+ 	libipulog.h
+ am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
+ am__vpath_adj = case $$p in \
+@@ -305,7 +305,7 @@
+ top_build_prefix = @top_build_prefix@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
+-pkginclude_HEADERS = libnetfilter_log.h linux_nfnetlink_log.h \
++pkginclude_HEADERS = libnetfilter_log.h \
+ 	$(am__append_1)
+ all: all-am
+ 
