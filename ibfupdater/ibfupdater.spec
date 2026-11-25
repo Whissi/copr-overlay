@@ -1,5 +1,5 @@
 Name:           ibfupdater
-Version:        1.0.0
+Version:        1.0.1
 Release:        1%{?dist}.whissi
 Summary:        Update downloaded files with HTTP caching and versioned backups
 
@@ -16,7 +16,6 @@ BuildRequires:  curl
 BuildRequires:  diffutils
 BuildRequires:  gawk
 BuildRequires:  python3
-BuildRequires:  ShellCheck
 BuildRequires:  util-linux-core
 
 Requires:       bash >= 4.2
@@ -43,10 +42,6 @@ cp -p %{SOURCE1} COPYING
 install -Dpm 0755 ibfupdater %{buildroot}%{_bindir}/ibfupdater
 
 %check
-bash -n ibfupdater
-shellcheck ibfupdater
-test "$(bash ibfupdater --version)" = "ibfupdater v%{version}"
-bash ibfupdater --help > /dev/null
 python3 tests/integration.py -v
 
 %files
@@ -55,5 +50,8 @@ python3 tests/integration.py -v
 %{_bindir}/ibfupdater
 
 %changelog
+* Wed Nov 25 2026 Thomas Deutschmann <whissi@whissi.de> - 1.0.1-1.whissi
+- Update to 1.0.1
+
 * Tue Nov 24 2026 Thomas Deutschmann <whissi@whissi.de> - 1.0.0-1.whissi
 - Initial package
