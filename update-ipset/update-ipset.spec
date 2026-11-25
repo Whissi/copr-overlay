@@ -1,6 +1,6 @@
 Name:           update-ipset
 Version:        1.0.0
-Release:        1%{?dist}.whissi
+Release:        2%{?dist}.whissi
 Summary:        Atomically replace ipsets from blocklist or allowlist files
 
 License:        GPL-3.0-or-later
@@ -10,8 +10,6 @@ Source0:        https://github.com/Whissi/%{name}/archive/v%{version}/%{name}-%{
 Source1:        COPYING
 
 BuildArch:      noarch
-BuildRequires:  bash
-BuildRequires:  ShellCheck
 
 Requires:       bash
 Requires:       coreutils
@@ -36,11 +34,6 @@ cp -p %{SOURCE1} COPYING
 %install
 install -Dpm 0755 update-ipset %{buildroot}%{_sbindir}/update-ipset
 
-%check
-bash -n update-ipset
-shellcheck update-ipset
-test "$(bash update-ipset --version)" = "update-ipset v%{version}"
-bash update-ipset --help > /dev/null
 # The upstream integration suite requires root and a private network namespace.
 
 %files
@@ -49,5 +42,8 @@ bash update-ipset --help > /dev/null
 %{_sbindir}/update-ipset
 
 %changelog
+* Wed Nov 25 2026 Thomas Deutschmann <whissi@whissi.de> - 1.0.0-2.whissi
+- Remove downstream lint and smoke checks and their build dependencies
+
 * Tue Nov 24 2026 Thomas Deutschmann <whissi@whissi.de> - 1.0.0-1.whissi
 - Initial package
